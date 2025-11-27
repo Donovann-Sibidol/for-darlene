@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Darlene</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600&display=swap');
+
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(0.98); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-soft {
+            animation: pulse-soft 2s ease-in-out infinite;
+        }
+
+        .hidden-start {
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+        }
+
+        /* Typography */
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-body {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        /* Pixel Art Styling via CSS/SVG sharpness */
+        .pixel-art {
+            image-rendering: pixelated;
+            shape-rendering: crispEdges;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-rose-50 via-white to-red-50 min-h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Container -->
+    <main class="relative w-full max-w-md p-6 mx-auto">
+        
+        <!-- SCENE 1: The Notification -->
+        <div id="intro-scene" class="flex flex-col items-center justify-center text-center space-y-8 transition-all duration-1000">
+            
+            <!-- Notification Card style -->
+            <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-rose-100 transform transition-all duration-500 hover:shadow-2xl hover:border-rose-200">
+                <div class="mb-6">
+                    <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                        💌
+                    </div>
+                    <p class="text-slate-600 font-body text-sm uppercase tracking-widest mb-2">New Notification</p>
+                    <h1 class="text-2xl font-serif-display text-slate-800">Waw look, you received a message from: <span class="font-bold text-rose-600">Donny</span></h1>
+                </div>
+
+                <button 
+                    onclick="revealGift()" 
+                    class="group relative inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white transition-all duration-200 bg-rose-500 rounded-full hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 animate-pulse-soft shadow-lg hover:shadow-rose-300/50"
+                >
+                    <span>Click Me</span>
+                    <svg class="w-4 h-4 ml-2 -mr-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCENE 2: The Gift (Hidden initially) -->
+        <div id="gift-scene" class="hidden-start flex flex-col items-center text-center">
+            
+            <!-- 1. The Pixel Art Rose (Top) -->
+            <div class="mb-8 animate-float">
+                <!-- SVG Pixel Art Rose -->
+                <svg width="180" height="180" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="pixel-art drop-shadow-2xl">
+                    <!-- Stem & Leaves (Green) -->
+                    <!-- Stem -->
+                    <rect x="11" y="12" width="2" height="10" fill="#4ade80" />
+                    <!-- Left Leaf -->
+                    <rect x="7" y="14" width="2" height="1" fill="#4ade80" />
+                    <rect x="8" y="15" width="2" height="1" fill="#4ade80" />
+                    <rect x="9" y="16" width="2" height="1" fill="#4ade80" />
+                    <!-- Right Leaf -->
+                    <rect x="13" y="15" width="2" height="1" fill="#4ade80" />
+                    <rect x="14" y="14" width="2" height="1" fill="#4ade80" />
+                    <rect x="15" y="13" width="2" height="1" fill="#4ade80" />
+
+                    <!-- Rose Head (Red/Pink Outline) -->
+                    <rect x="10" y="2" width="4" height="1" fill="#be123c" /> <!-- Top -->
+                    <rect x="8" y="3" width="2" height="1" fill="#be123c" />
+                    <rect x="14" y="3" width="2" height="1" fill="#be123c" />
+                    <rect x="7" y="4" width="1" height="5" fill="#be123c" /> <!-- Left side -->
+                    <rect x="16" y="4" width="1" height="5" fill="#be123c" /> <!-- Right side -->
+                    <rect x="8" y="9" width="2" height="1" fill="#be123c" />
+                    <rect x="14" y="9" width="2" height="1" fill="#be123c" />
+                    <rect x="10" y="10" width="4" height="1" fill="#be123c" /> <!-- Bottom -->
+
+                    <!-- Rose Fill (Lighter Red) -->
+                    <rect x="10" y="3" width="4" height="1" fill="#fb7185" />
+                    <rect x="8" y="4" width="8" height="5" fill="#e11d48" />
+                    <rect x="9" y="5" width="6" height="3" fill="#fb7185" /> <!-- Highlight -->
+                    
+                    <!-- Detail lines inside rose -->
+                    <rect x="10" y="5" width="1" height="2" fill="#be123c" />
+                    <rect x="13" y="6" width="1" height="2" fill="#be123c" />
+                </svg>
+            </div>
+
+            <!-- 2. The Message (Bottom) -->
+            <div class="bg-white/90 backdrop-blur-md p-8 rounded-xl shadow-xl border-t-4 border-rose-400 max-w-sm mx-auto animate-fade-in relative">
+                <!-- Decorative quotes -->
+                <span class="absolute top-4 left-4 text-rose-200 text-6xl font-serif-display leading-none opacity-50">“</span>
+                
+                <h2 class="text-2xl font-serif-display text-rose-800 mb-6 font-bold">Congratulations!</h2>
+                
+                <div class="space-y-4 text-slate-700 font-body leading-relaxed text-lg">
+                    <p>
+                        Congratulations on your convocation, <span class="font-bold text-rose-600">My Darlene</span>.
+                    </p>
+                    <p>
+                        I know you’ve worked so hard for this moment and it has finally arrived, and seeing you succeed makes me really proud. Remember that I always see the best in you & believe in you. 
+                    </p>
+                    <p>
+                        I’m grateful I get to witness your journey and I pray that God continues to bless your beautiful heart and mind.
+                    </p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-rose-100">
+                    <p class="font-serif-display italic text-rose-700 font-medium">
+                        May Christ's love guide your next steps in your future beautifully. - Donovann
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Simple Background Decorations -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-64 h-64 bg-rose-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-[-10%] right-[-10%] w-64 h-64 bg-red-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-64 h-64 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <script>
+        function revealGift() {
+            const introScene = document.getElementById('intro-scene');
+            const giftScene = document.getElementById('gift-scene');
+
+            // 1. Fade out intro
+            introScene.style.opacity = '0';
+            introScene.style.transform = 'translateY(-20px)';
+
+            // 2. Wait for fade out, then switch
+            setTimeout(() => {
+                introScene.style.display = 'none';
+                
+                // Show gift scene
+                giftScene.style.display = 'flex';
+                // Trigger reflow
+                void giftScene.offsetWidth; 
+                
+                // Remove hidden class properties manually to ensure animation plays
+                giftScene.classList.remove('hidden-start');
+                
+                // Add fade-in animation class explicitly if needed, 
+                // but removing hidden-start handles opacity 0 -> 1 via CSS animation logic
+                // For extra safety, we add a specific class to trigger the CSS animation
+                giftScene.classList.add('animate-fade-in');
+                
+            }, 600); // 600ms matches the transition duration roughly
+        }
+    </script>
+</body>
+</html>
