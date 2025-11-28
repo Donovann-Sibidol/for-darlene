@@ -24,6 +24,14 @@
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.9; transform: scale(0.98); }
         }
+        
+        /* New blob animation for background */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
 
         .animate-fade-in {
             animation: fadeIn 1.5s ease-out forwards;
@@ -35,6 +43,10 @@
         
         .animate-pulse-soft {
             animation: pulse-soft 2s ease-in-out infinite;
+        }
+        
+        .animate-blob {
+            animation: blob 7s infinite;
         }
 
         .hidden-start {
@@ -58,7 +70,13 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-rose-50 via-white to-red-50 min-h-screen flex items-center justify-center overflow-hidden">
+<!-- 
+    Updated body classes:
+    - Removed 'overflow-hidden'.
+    - Changed 'justify-center' to 'justify-start' so content flows from the top, ensuring scrollability on small screens.
+    - Added 'py-10' for top/bottom padding.
+-->
+<body class="bg-gradient-to-br from-rose-50 via-white to-red-50 min-h-screen flex flex-col items-center justify-start py-10">
 
     <!-- Container -->
     <main class="relative w-full max-w-md p-6 mx-auto">
@@ -73,6 +91,7 @@
                         💌
                     </div>
                     <p class="text-slate-600 font-body text-sm uppercase tracking-widest mb-2">New Notification</p>
+                    <!-- Keeping the user's custom h1 text -->
                     <h1 class="text-2xl font-serif-display text-slate-800">Waw look, you received a message from: <span class="font-bold text-rose-600">Donny</span></h1>
                 </div>
 
@@ -160,9 +179,10 @@
 
     <!-- Simple Background Decorations -->
     <div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+        <!-- Added animation-delay classes to ensure background blobs don't move in sync -->
         <div class="absolute top-[-10%] left-[-10%] w-64 h-64 bg-rose-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="absolute top-[-10%] right-[-10%] w-64 h-64 bg-red-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-[-10%] left-[20%] w-64 h-64 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+        <div class="absolute top-[-10%] right-[-10%] w-64 h-64 bg-red-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-64 h-64 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: -4s;"></div>
     </div>
 
     <script>
@@ -186,9 +206,7 @@
                 // Remove hidden class properties manually to ensure animation plays
                 giftScene.classList.remove('hidden-start');
                 
-                // Add fade-in animation class explicitly if needed, 
-                // but removing hidden-start handles opacity 0 -> 1 via CSS animation logic
-                // For extra safety, we add a specific class to trigger the CSS animation
+                // Add fade-in animation class explicitly
                 giftScene.classList.add('animate-fade-in');
                 
             }, 600); // 600ms matches the transition duration roughly
